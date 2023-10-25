@@ -5,6 +5,9 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import * as emoji from 'node-emoji'
 
 export function HabitTrackerPage() {
 
@@ -24,9 +27,23 @@ export function HabitTrackerPage() {
     },
   ]
 
+const events = [
+  { title: 'muscle', start: new Date() }
+]
+
+  // a custom render function
+function renderEventContent(eventInfo) {
+  return (
+    <>
+     <b>{emoji.get(`${eventInfo.event.title}`)}</b>
+    </>
+  )
+}
+
+
   return (
     <Container className="main-container" maxWidth="sm">
-      <Typography coomponent="p" variant="h5">
+      <Typography component="p" variant="h5">
         Track progress
       </Typography>
       <div className="add-progress-row">
@@ -55,6 +72,19 @@ export function HabitTrackerPage() {
             <AddIcon />
           </Button>
         </div>
+      </div >
+      <div className="divider"></div>
+      <div className="habit-calendar">
+       <Typography component="p" variant="h5">
+        Habit Progress
+      </Typography>
+     <FullCalendar
+        plugins={[dayGridPlugin]}
+        initialView='dayGridMonth'
+        weekends={false}
+        events={events}
+        eventContent={renderEventContent}
+      />
       </div>
     </Container>
   )
