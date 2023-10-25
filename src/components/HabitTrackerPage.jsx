@@ -5,9 +5,24 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+// import { useApp } from "./RealmApp";
+// import { urls } from "../constant";
+// import { getUrl } from "../get-url.js";
 
 export function HabitTrackerPage() {
-
+  // const app = useApp()
+  // const userID = app.getCurrentUserID();
+  // // const username = "divya.gupta@mongodb.com";
+  // const [habits2, setHabits] = useState();
+  // useEffect(() => {
+  //   fetch(getUrl(urls.getHabits, {"userID": userID}), {
+  //     method: "GET",
+  //   })
+  //     .then(response => response.json())
+  //     .then(json => setHabits(json))
+  //     .catch(error => console.log(error));
+  // }, []);
+  
   // we should query here for the buttons to display
   // find all habits by user ID --> return emojis & habit ID
   // For now we have this
@@ -15,14 +30,21 @@ export function HabitTrackerPage() {
     {
       // "emoji": "💧",
       "emoji": "0x1F4A7",
-      "habit_id": "water",
+      "_id": "water",
     },
     {
       // "emoji": "💪",
       "emoji": "0x1F4AA",
-      "habit_id": "gym",
+      "_id": "gym",
     },
   ]
+
+  // const onAddHabitClick = () => {
+  //   fetch(`${urls.base}${urls.createHabit}`)
+  //     .then(response => response.json())
+  //     .then(json => console.log(json))
+  //     .catch(error => console.log(error))
+  // }
 
   return (
     <Container className="main-container" maxWidth="sm">

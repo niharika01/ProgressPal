@@ -18,6 +18,7 @@ export function AppProvider({ appId, children }) {
   }, [appId]);
   // Store the app's current user in state and wrap the built-in auth functions to modify this state
   const [currentUser, setCurrentUser] = React.useState(app.currentUser);
+  const [currentUserID, setCurrentUserID] = React.useState();
   // Wrap the base logIn function to save the logged in user in state
   const logIn = React.useCallback(
     async (credentials) => {
@@ -32,6 +33,7 @@ export function AppProvider({ appId, children }) {
       const user = app.currentUser;
       await user?.logOut();
       await app.removeUser(user);
+      setCurrentUserID(undefined);
     } catch (err) {
       console.error(err);
     }
@@ -42,10 +44,17 @@ export function AppProvider({ appId, children }) {
     setCurrentUser(app.currentUser);
   }, [app]);
 
+  const getCurrentUserID = React.useCallback(() => {
+    return currentUserID;
+  });
+
   // Override the App's currentUser & logIn properties + include the app-level logout function
+  // const appContext = React.useMemo(() => {
+  //   return { ...app, currentUser, logIn, logOut };
+  // }, [app, currentUser, logIn, logOut]);
   const appContext = React.useMemo(() => {
-    return { ...app, currentUser, logIn, logOut };
-  }, [app, currentUser, logIn, logOut]);
+    return { ...app, currentUser, logIn, logOut, setCurrentUserID, getCurrentUserID };
+  }, [app, currentUser, logIn, logOut, setCurrentUserID, getCurrentUserID]);
 
   return (
     <AppContext.Provider value={appContext}>
