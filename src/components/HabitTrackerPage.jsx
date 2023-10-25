@@ -9,15 +9,19 @@ import AddIcon from "@mui/icons-material/Add";
 export function HabitTrackerPage() {
 
   // we should query here for the buttons to display
-  // find all habits by user ID --> return emojis mapped to habit ID
+  // find all habits by user ID --> return emojis & habit ID
   // For now we have this
   const habits = [
     {
-      "id": "&#128167;",
+      // "emoji": "💧",
+      "emoji": "0x1F4A7",
+      "habit_id": "water",
     },
     {
-      "id": "&#127947;",
-    }
+      // "emoji": "💪",
+      "emoji": "0x1F4AA",
+      "habit_id": "gym",
+    },
   ]
 
   return (
@@ -33,7 +37,12 @@ export function HabitTrackerPage() {
               size="small"
               sx={{borderRadius: "36px", height: "64px", width: "64px"}}
             >
-              {habit.id}
+              {/* &#128167; */}
+              {/* {habit.emoji} */}
+              <span className="habit-emoji" role="img">
+                {String.fromCodePoint(habit.emoji)}
+              </span>
+              
             </Button>)
           })}
         </div>

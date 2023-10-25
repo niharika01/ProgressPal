@@ -57,17 +57,35 @@
   gap: 24px;
 }
 
+/* Variables */
+:root {
+  --sizing-sm: 8px;
+  --sizing-md: 16px;
+  --sizing-lg: 24px;
+  --sizing-xl: 36px;
+  --sizing-xxl: 48px;
+}
+
 .add-progress-row {
+  margin-top: var(--sizing-lg);
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
 .track-habits-bubbles {
-  flex-grow: 1;
+  display: flex;
+  gap: var(--sizing-md);
 }
 
 .add-habit-wrapper {
-  height: 36px;
-  width: 36px;
+  height: var(--sizing-xl);
+  width: var(--sizing-xl);
+}
+
+.habit-emoji {
+  height: var(--sizing-lg);
+  width: var(--sizing-lg);
+  font-size: var(--sizing-lg);
+  line-height: 1;
 }
