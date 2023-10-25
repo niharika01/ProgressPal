@@ -56,3 +56,18 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.add-progress-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.track-habits-bubbles {
+  flex-grow: 1;
+}
+
+.add-habit-wrapper {
+  height: 36px;
+  width: 36px;
+}
