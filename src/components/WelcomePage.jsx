@@ -15,6 +15,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { MoreInfoDocsLink } from "./MoreInfo";
 import { toggleBoolean } from "../utils";
 import { useErrorAlert } from "../hooks/useErrorAlert";
+import { urls } from "../constant";
+import { getUrl } from "../get-url";
 
 export function WelcomePage() {
   const app = useApp();
@@ -48,9 +50,31 @@ export function WelcomePage() {
     try {
       if (isSignup) {
         await app.emailPasswordAuth.registerUser({ email, password });
+        // add user to createUser
+        // TODO: we need to validate; check the response and see if user exists
+        await fetch(getUrl(urls.createUser), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: "name",
+            username: email,
+            password: password,
+          }),
+        })
+          .then(response => response.json())
+          .then(json => {
+            console.log("json response from createUser: ", json);
+            // TODO: set curr user id in state here (uncomment line below)
+            app.setCurrentUserID(json.id);
+          })
+          .catch(error => console.log(error));
       }
       await app.logIn(Realm.Credentials.emailPassword(email, password));
     } catch (err) {
+      // TODO: should call endpoint like getUser
+      // then should save the returned user ID into the state (like above)
       handleAuthenticationError(err, setError);
     }
   };
