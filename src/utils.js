@@ -34,14 +34,14 @@ export function removeValueAtIndex(arr, idx) {
 }
 
 export const createObjectId = () => {
-  return new Realm.BSON.ObjectId()
+  return new Realm.BSON.ObjectId();
 };
 
 export const getTodoId = (todo) => {
   if (todo._id instanceof Realm.BSON.ObjectId) {
     return todo._id.toHexString();
   }
-  return todo._id
+  return todo._id;
 };
 
 export const isSameTodo = (todo1, todo2) =>
@@ -50,4 +50,20 @@ export const isSameTodo = (todo1, todo2) =>
 export const getTodoIndex = (todos, todo) => {
   const idx = todos.findIndex((t) => isSameTodo(t, todo));
   return idx >= 0 ? idx : null;
+};
+
+/**
+ * Constructs full URL with the base URL, specific endpoint,
+ * and any optional params.
+ * @param {string} base 
+ * @param {string} endpoint 
+ * @param {Object} params ex: { "userID": "id123", ... } or undefined
+ * @returns URL string
+ */
+export const getUrl = (base, endpoint, params) => {
+  if (params != undefined) {
+    const query = Object.entries(params).map(([k,v]) => `${k}=${v}`)
+    return `${base}${endpoint}?${query}`;
+  }
+  return `${base}${endpoint}`;
 }

@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 import { WelcomePage } from "./WelcomePage";
-import { TodoItemsPage } from "./TodoItemsPage";
 import { HabitTrackerPage } from "./HabitTrackerPage";
 import { AppProvider, useApp } from "./RealmApp";
 import { ThemeProvider } from "./Theme";
