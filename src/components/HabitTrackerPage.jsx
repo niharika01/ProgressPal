@@ -44,7 +44,7 @@ function renderEventContent(eventInfo) {
   return (
     <Container className="main-container" maxWidth="sm">
       <Typography component="p" variant="h5">
-        Track progress
+        Habits
       </Typography>
       <div className="add-progress-row">
         <div className="track-habits-bubbles">
@@ -73,17 +73,18 @@ function renderEventContent(eventInfo) {
           </Button>
         </div>
       </div >
-      <div className="divider"></div>
+      <div className="divider" padding="100px"></div>
       <div className="habit-calendar">
        <Typography component="p" variant="h5">
-        Habit Progress
+        Habit Progress {`${emoji.get("chart_with_upwards_trend")}`}
       </Typography>
      <FullCalendar
         plugins={[dayGridPlugin]}
         initialView='dayGridMonth'
-        weekends={false}
+        weekends={true}
         events={events}
         eventContent={renderEventContent}
+        eventColor= '#ff0000'
       />
       </div>
     </Container>

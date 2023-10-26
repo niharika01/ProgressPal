@@ -89,3 +89,7 @@
   font-size: var(--sizing-lg);
   line-height: 1;
 }
+
+.habit-calendar {
+  padding-top: 50px;
+}
