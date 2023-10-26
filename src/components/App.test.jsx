@@ -33,10 +33,10 @@ test("allows you to sign up for a new account", async () => {
   await waitFor(
     () => {
       expect(
-        screen.queryByText(/Password must be between 6 and 128 characters./i)
+        screen.queryByText(/Password must be between 6 and 128 characters./i),
       ).toBeInTheDocument();
     },
-    { timeout: 5000 }
+    { timeout: 5000 },
   );
   await user.clear(screen.queryByLabelText("Password"));
   await user.type(screen.queryByLabelText("Password"), TEST_PASSWORD);
@@ -46,14 +46,14 @@ test("allows you to sign up for a new account", async () => {
     () => {
       expect(screen.queryByText(/You have 0 To-Do Items/i)).toBeInTheDocument();
     },
-    { timeout: 7000 }
+    { timeout: 7000 },
   );
   await user.click(screen.queryByText(/Log out/i));
   await waitFor(
     () => {
       expect(screen.queryByText(/Welcome!/i)).toBeInTheDocument();
     },
-    { timeout: 4000 }
+    { timeout: 4000 },
   );
 }, 12000);
 
@@ -70,10 +70,10 @@ test("allows you to log in with an existing account", async () => {
   await waitFor(
     () => {
       expect(
-        screen.queryByText(/You have (.+) To-Do Item(s?)/i)
+        screen.queryByText(/You have (.+) To-Do Item(s?)/i),
       ).toBeInTheDocument();
     },
-    { timeout: 5000 }
+    { timeout: 5000 },
   );
 }, 7000);
 
@@ -83,42 +83,42 @@ test("allows you to CRUD to-do items", async () => {
     () => {
       expect(screen.queryByText(/You have 0 To-Do Items/i)).toBeInTheDocument();
     },
-    { timeout: 4000 }
+    { timeout: 4000 },
   );
   // Add the first To-Do
   await user.click(screen.queryByText(/Add To-Do/i));
   await user.type(
     screen.queryByPlaceholderText("What needs doing?"),
-    "Do the dishes"
+    "Do the dishes",
   );
   await user.click(screen.queryByText(/Save/i));
   await wait(10);
   await waitFor(
     () => {
       expect(
-        screen.queryByPlaceholderText("What needs doing?")
+        screen.queryByPlaceholderText("What needs doing?"),
       ).not.toBeInTheDocument();
       expect(screen.queryByText(/You have 1 To-Do Item/i)).toBeInTheDocument();
       expect(screen.queryByText(/Do the dishes/i)).toBeInTheDocument();
     },
-    { timeout: 10000 }
+    { timeout: 10000 },
   );
   // Add a second To-Do
   await user.click(screen.queryByText(/Add To-Do/i));
   await user.type(
     screen.queryByPlaceholderText("What needs doing?"),
-    "Do the laundry"
+    "Do the laundry",
   );
   await user.click(screen.queryByText(/Save/i));
   await wait(10);
   await waitFor(
     () => {
       expect(
-        screen.queryByPlaceholderText("What needs doing?")
+        screen.queryByPlaceholderText("What needs doing?"),
       ).not.toBeInTheDocument();
       expect(screen.queryByText(/You have 2 To-Do Items/i)).toBeInTheDocument();
     },
-    { timeout: 8000 }
+    { timeout: 8000 },
   );
   // Mark the second To-Do as completed
   const checkboxes = screen
@@ -132,7 +132,7 @@ test("allows you to CRUD to-do items", async () => {
       expect(checkboxes[0].parentElement).toHaveClass("Mui-checked");
       expect(checkboxes[1].parentElement).not.toHaveClass("Mui-checked");
     },
-    { timeout: 4000 }
+    { timeout: 4000 },
   );
   // Delete the first To-Do
   const deleteButtons = screen.getAllByTestId("todo-delete-button");
@@ -144,7 +144,7 @@ test("allows you to CRUD to-do items", async () => {
       expect(screen.queryByText(/You have 1 To-Do Item/i)).toBeInTheDocument();
       expect(screen.queryByText(/Do the laundry/i)).toBeInTheDocument();
     },
-    { timeout: 10000 }
+    { timeout: 10000 },
   );
 }, 33000);
 
@@ -157,6 +157,6 @@ test("allows you to log out", async () => {
     () => {
       expect(screen.queryByText(/Welcome!/i)).toBeInTheDocument();
     },
-    { timeout: 4000 }
+    { timeout: 4000 },
   );
 });

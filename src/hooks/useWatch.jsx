@@ -65,7 +65,7 @@ export function useWatch(collection, changeHandlers) {
           default: {
             // change.operationType will always be one of the specified cases, so we should never hit this default
             throw new Error(
-              `Invalid change operation type: ${change.operationType}`
+              `Invalid change operation type: ${change.operationType}`,
             );
           }
         }
@@ -74,7 +74,7 @@ export function useWatch(collection, changeHandlers) {
     watchTodos();
     return () => {
       // Close the change stream in the effect cleanup
-      stream?.return()
-    }
+      stream?.return();
+    };
   }, [collection, filter]);
 }

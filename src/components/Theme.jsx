@@ -10,7 +10,7 @@ const themeConfig = {
     primary: colors.green,
     secondary: colors.green,
   },
-}
+};
 
 const theme = createTheme(themeConfig);
 

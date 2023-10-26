@@ -16,7 +16,6 @@ const ListItemWithTwoSecondaryActions = withStyles(ListItem, {
   },
 });
 
-
 export function DraftTodoItem({ todo, todoActions, draftTodoActions }) {
   return (
     <ListItemWithTwoSecondaryActions>

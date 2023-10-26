@@ -1,5 +1,5 @@
 import { Container, Link } from "@mui/material";
-export const MoreInfo = MoreInfoDocsLink
+export const MoreInfo = MoreInfoDocsLink;
 
 function MoreInfoItem({ children }) {
   return (
@@ -16,13 +16,10 @@ export function MoreInfoDocsLink() {
   const docsLink = new URL(docsPath, "https://mongodb.com");
   return (
     <MoreInfoItem>
-      <span>{
-        "Built with the Atlas App Services MQL Template"
-      }</span> |{" "}
+      <span>{"Built with the Atlas App Services MQL Template"}</span> |{" "}
       <Link target="_blank" href={docsLink}>
         Docs
       </Link>
     </MoreInfoItem>
   );
 }
-

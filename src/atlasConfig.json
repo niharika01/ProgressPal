@@ -1,9 +1,9 @@
 {
-    "appId": "application-0-mitmx",
-    "appUrl": "https://realm.mongodb.com/groups/6537fcebf0aa5c4e8e555057/apps/6537fd78bb4485e018516eaa",
-    "baseUrl": "https://realm.mongodb.com",
-    "clientApiBaseUrl": "https://us-east-1.aws.realm.mongodb.com",
-    "dataApiBaseUrl": "https://us-east-1.aws.data.mongodb-api.com",
-    "dataExplorerLink": "https://cloud.mongodb.com/links/6537fcebf0aa5c4e8e555057/explorer/Cluster0/database/collection/find",
-    "dataSourceName": "mongodb-atlas"
+  "appId": "application-0-mitmx",
+  "appUrl": "https://realm.mongodb.com/groups/6537fcebf0aa5c4e8e555057/apps/6537fd78bb4485e018516eaa",
+  "baseUrl": "https://realm.mongodb.com",
+  "clientApiBaseUrl": "https://us-east-1.aws.realm.mongodb.com",
+  "dataApiBaseUrl": "https://us-east-1.aws.data.mongodb-api.com",
+  "dataExplorerLink": "https://cloud.mongodb.com/links/6537fcebf0aa5c4e8e555057/explorer/Cluster0/database/collection/find",
+  "dataSourceName": "mongodb-atlas"
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-export const API_TYPE_NAME = "MQL"
+export const API_TYPE_NAME = "MQL";
 
 export function AppName() {
   return (

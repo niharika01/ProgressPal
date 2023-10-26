@@ -29,7 +29,7 @@ export function useTodos() {
   // Fetch all todos on load and whenever our collection changes (e.g. if the current user changes)
   React.useEffect(() => {
     let shouldUpdate = true;
-    const fetchTodos = todoItemCollection.find({})
+    const fetchTodos = todoItemCollection.find({});
     if (shouldUpdate) {
       fetchTodos.then((fetchedTodos) => {
         setTodos(fetchedTodos);
@@ -38,7 +38,7 @@ export function useTodos() {
     }
     return () => {
       shouldUpdate = false;
-    }
+    };
   }, [todoItemCollection]);
 
   // Use a MongoDB change stream to reactively update state when operations succeed
@@ -101,7 +101,7 @@ export function useTodos() {
       } catch (err) {
         if (err.error.match(/^Duplicate key error/)) {
           console.warn(
-            `The following error means that this app tried to insert a todo multiple times (i.e. an existing todo has the same _id). In this app we just catch the error and move on. In your app, you might want to debounce the save input or implement an additional loading state to avoid sending the request in the first place.`
+            `The following error means that this app tried to insert a todo multiple times (i.e. an existing todo has the same _id). In this app we just catch the error and move on. In your app, you might want to debounce the save input or implement an additional loading state to avoid sending the request in the first place.`,
           );
         }
         console.error(err);
@@ -113,7 +113,7 @@ export function useTodos() {
   const toggleTodo = async (todo) => {
     await todoItemCollection.updateOne(
       { _id: todo._id },
-      { $set: { isComplete: !todo.isComplete } }
+      { $set: { isComplete: !todo.isComplete } },
     );
   };
 
