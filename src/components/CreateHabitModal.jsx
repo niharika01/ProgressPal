@@ -12,6 +12,8 @@ import EmojiPicker, { EmojiStyle } from 'emoji-picker-react';
 import { useApp } from "./RealmApp";
 import { getUrl } from "../utils";
 import urls from "../urls.json";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 const { base, createHabit } = urls;
 
 export default function CreateHabitModal({ refetch }) {
@@ -27,11 +29,15 @@ export default function CreateHabitModal({ refetch }) {
   const app = useApp();
   const userId = app.currentUser?.id;
 
-  const onCancel = () => {
+  const clearInputs = () => {
     setName(undefined);
     setEmoji(undefined);
     setGoal(undefined);
     setDeadline(undefined);
+  }
+
+  const onCancel = () => {
+    clearInputs();
     handleClose();
   }
 
@@ -42,7 +48,7 @@ export default function CreateHabitModal({ refetch }) {
       emoji,
       goal,
       deadline,
-    })
+    });
 
     // check for required fields
     if (name == undefined || emoji == undefined || goal == undefined) {
@@ -119,7 +125,6 @@ export default function CreateHabitModal({ refetch }) {
             {showEmojiPicker &&
               <div className="emoji-picker">
                 <EmojiPicker
-                // height={300}
                 onEmojiClick={onEmojiClick}
                 emojiStyle={EmojiStyle.NATIVE}
                 width="100%"
@@ -136,11 +141,12 @@ export default function CreateHabitModal({ refetch }) {
               value={goal}
               onChange={(e) => { setGoal(e.target.value) }}
             />
-            <TextField
+            <DatePicker
+              minDate={dayjs()}
+              value={deadline}
+              onChange={setDeadline}
               label="Deadline"
               size="small"
-              value={deadline}
-              onChange={(e) => { setDeadline(e.target.value) }}
             />
           </div>
 
