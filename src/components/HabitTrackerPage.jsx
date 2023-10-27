@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Container, Button, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import { useApp } from "./RealmApp";
 
 import urls from "../urls.json";
@@ -12,7 +11,7 @@ import CreateHabitModal from "./CreateHabitModal";
 export function HabitTrackerPage() {
   const app = useApp();
   const userId = app.currentUser?.id;
-  console.log(userId);
+  const [submittedHabit, setSubmittedHabit] = useState(0);
   const [habits, setHabits] = useState();
   useEffect(() => {
     fetch(getUrl(base, getHabits, {"userID": userId}), {
@@ -21,7 +20,7 @@ export function HabitTrackerPage() {
       .then(response => response.json())
       .then(json => setHabits(json.res))
       .catch(error => console.log(error));
-  }, [userId]);
+  }, [userId, submittedHabit]);
   console.log(habits)
 
   // we should query here for the buttons to display
@@ -40,16 +39,9 @@ export function HabitTrackerPage() {
   //   },
   // ];
 
-  // const onAddHabitClick = () => {
-  //   fetch(`${urls.base}${urls.createHabit}`)
-  //     .then(response => response.json())
-  //     .then(json => console.log(json))
-  //     .catch(error => console.log(error))
-  // }
-
   return (
     <Container className="main-container" maxWidth="sm">
-      <Typography coomponent="p" variant="h5">
+      <Typography component="p" variant="h5">
         Track progress
       </Typography>
       <div className="add-progress-row">
@@ -72,7 +64,7 @@ export function HabitTrackerPage() {
           })}
         </div>
         <div className="add-habit-wrapper">
-          <CreateHabitModal />
+          <CreateHabitModal setSubmittedHabit={setSubmittedHabit} />
           {/* <Button
             variant="outlined"
             size="small"
