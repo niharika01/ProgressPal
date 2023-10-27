@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Container, Button, Typography } from "@mui/material";
 import { useApp } from "./RealmApp";
 
@@ -11,17 +11,21 @@ import CreateHabitModal from "./CreateHabitModal";
 export function HabitTrackerPage() {
   const app = useApp();
   const userId = app.currentUser?.id;
-  const [submittedHabit, setSubmittedHabit] = useState(0);
+  // const [submittedHabit, setSubmittedHabit] = useState(0);
   const [habits, setHabits] = useState();
-  useEffect(() => {
+  
+  const fetchHabits = useCallback(() => {
     fetch(getUrl(base, getHabits, {"userID": userId}), {
       method: "GET",
     })
       .then(response => response.json())
       .then(json => setHabits(json.res))
       .catch(error => console.log(error));
-  }, [userId, submittedHabit]);
-  console.log(habits)
+  }, [userId])
+
+  useEffect(() => {
+    fetchHabits();
+  }, [fetchHabits]);
 
   return (
     <Container className="main-container" maxWidth="sm">
@@ -31,7 +35,6 @@ export function HabitTrackerPage() {
       <div className="add-progress-row">
         <div className="track-habits-bubbles">
           {habits?.map((habit) => {
-            console.log(habit)
             return (
               <Button
                 key={habit._id}
@@ -48,7 +51,7 @@ export function HabitTrackerPage() {
           })}
         </div>
         <div className="add-habit-wrapper">
-          <CreateHabitModal setSubmittedHabit={setSubmittedHabit} />
+          <CreateHabitModal refetch={fetchHabits} />
         </div>
       </div>
     </Container>

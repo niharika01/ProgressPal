@@ -6,17 +6,21 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import EmojiPicker, { Emoji, EmojiStyle } from 'emoji-picker-react';
+
 import { useApp } from "./RealmApp";
 import { getUrl } from "../utils";
 import urls from "../urls.json";
 const { base, createHabit } = urls;
 
-export default function CreateHabitModal({ setSubmittedHabit }) {
+export default function CreateHabitModal({ refetch }) {
   const [name, setName] = useState();
   const [emoji, setEmoji] = useState();
   const [goal, setGoal] = useState();
   const [deadline, setDeadline] = useState();
   const [open, setOpen] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -55,14 +59,21 @@ export default function CreateHabitModal({ setSubmittedHabit }) {
       },
       body,
     })
-      .then(response => response.json())
-      .then(json => console.log(json))
       .catch(error => console.log(error))
 
     // clear fields and close modal
     handleClose();
-    setSubmittedHabit(0);
-  }, [userId, name, emoji, goal, deadline, setSubmittedHabit])
+    refetch();
+  }, [userId, name, emoji, goal, deadline, refetch])
+
+  // Emoji picker
+  const onEmojiClick = (emojiData) => {
+    setEmoji(emojiData.emoji);
+  }
+
+  const onEmojiInputClick = () => {
+    setShowEmojiPicker(!showEmojiPicker);
+  }
 
   return (
     <div>
@@ -84,37 +95,54 @@ export default function CreateHabitModal({ setSubmittedHabit }) {
           </Typography>
 
           <div className="create-habit-input">
+            <div className="name-emoji-row">
+              <TextField
+                required
+                className="name-input"
+                error={name === ""}
+                label="Habit name"
+                placeholder="Ex: Gym, Read, Water plants"
+                size="small"
+                value={name}
+                onChange={(e) => { setName(e.target.value) }}
+              />
+              <Button 
+                variant="outlined"
+                className="emoji-input"
+                onClick={onEmojiInputClick}
+                sx={{ borderRadius: "4px", width: "32px", height: "100%" }}
+              >
+                {emoji 
+                  ? <div className="habit-emoji">{emoji}</div>
+                  : <InsertEmoticonIcon />
+                }
+              </Button>
+            </div>
+            {showEmojiPicker &&
+              <div className="emoji-picker">
+                <EmojiPicker
+                // height={300}
+                onEmojiClick={onEmojiClick}
+                emojiStyle={EmojiStyle.NATIVE}
+                width="100%"
+                />
+              </div>
+            }
+
             <TextField
               required
-              error={name===""}
-              label="Habit name"
-              placeholder="Ex: Gym, Read, Water plants"
-              size="small"
-              value={name}
-              onChange={(e) => {setName(e.target.value)}}
-            />
-            <TextField
-              required={true}
-              error={emoji===""}
-              label="Emoji"
-              size="small"
-              value={emoji}
-              onChange={(e) => {setEmoji(e.target.value)}}
-            />
-            <TextField
-              required
-              error={goal===""}
+              error={goal === ""}
               placeholder="Ex: 30, 60"
               label="Goal"
               size="small"
               value={goal}
-              onChange={(e) => {setGoal(e.target.value)}}
+              onChange={(e) => { setGoal(e.target.value) }}
             />
             <TextField
               label="Deadline"
               size="small"
               value={deadline}
-              onChange={(e) => {setDeadline(e.target.value)}}
+              onChange={(e) => { setDeadline(e.target.value) }}
             />
           </div>
 
@@ -141,5 +169,5 @@ export default function CreateHabitModal({ setSubmittedHabit }) {
         </div>
       </Modal>
     </div>
-  )  
+  )
 }
