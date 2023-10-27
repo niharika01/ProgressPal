@@ -30,7 +30,7 @@ export function HabitTrackerPage() {
   return (
     <Container className="main-container" maxWidth="sm">
       <Typography component="p" variant="h5">
-        Track progress
+        Habits
       </Typography>
       <div className="add-progress-row">
         <div className="track-habits-bubbles">

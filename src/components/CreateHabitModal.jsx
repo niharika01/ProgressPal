@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import EmojiPicker, { Emoji, EmojiStyle } from 'emoji-picker-react';
+import EmojiPicker, { EmojiStyle } from 'emoji-picker-react';
 
 import { useApp } from "./RealmApp";
 import { getUrl } from "../utils";
@@ -59,18 +59,16 @@ export default function CreateHabitModal({ refetch }) {
       },
       body,
     })
+      .then(response => refetch())
       .catch(error => console.log(error))
 
-    // clear fields and close modal
     handleClose();
-    refetch();
   }, [userId, name, emoji, goal, deadline, refetch])
 
   // Emoji picker
   const onEmojiClick = (emojiData) => {
     setEmoji(emojiData.emoji);
   }
-
   const onEmojiInputClick = () => {
     setShowEmojiPicker(!showEmojiPicker);
   }

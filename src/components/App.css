@@ -1,3 +1,15 @@
+/* Variables */
+:root {
+  --sizing-sm: 8px;
+  --sizing-md: 16px;
+  --sizing-lg: 24px;
+  --sizing-xl: 36px;
+  --sizing-2xl: 48px;
+  --sizing-3xl: 64px;
+  --sizing-4xl: 72px;
+  --sizing-5xl: 128px;
+}
+
 .App {
   box-sizing: border-box;
   margin: 0;
@@ -57,16 +69,6 @@
   gap: 24px;
 }
 
-/* Variables */
-:root {
-  --sizing-sm: 8px;
-  --sizing-md: 16px;
-  --sizing-lg: 24px;
-  --sizing-xl: 36px;
-  --sizing-xxl: 48px;
-  --sizing-3xl: 72px;
-  --sizing-4xl: 128px;
-}
 
 .add-progress-row {
   margin-top: var(--sizing-lg);
@@ -78,11 +80,13 @@
 .track-habits-bubbles {
   display: flex;
   gap: var(--sizing-md);
+  flex-wrap: wrap;
 }
 
 .add-habit-wrapper {
-  height: var(--sizing-xl);
-  width: var(--sizing-xl);
+  height: var(--sizing-3xl);
+  width: var(--sizing-3xl);
+  margin-left: var(--sizing-xl);
 }
 
 .habit-emoji {
@@ -118,7 +122,7 @@
 }
 
 .submit-habit-button {
-  width: var(--sizing-4xl);
+  width: var(--sizing-5xl);
   padding: var(--sizing-sm);
 }
 
@@ -150,6 +154,5 @@
   left: 50%;
   transform: translate(-50%, -20%);
   width: 400px;
-  /* background-color: white; */
   z-index: 999;
 }
