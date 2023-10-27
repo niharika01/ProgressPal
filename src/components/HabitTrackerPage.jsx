@@ -23,22 +23,6 @@ export function HabitTrackerPage() {
   }, [userId, submittedHabit]);
   console.log(habits)
 
-  // we should query here for the buttons to display
-  // find all habits by user ID --> return emojis & habit ID
-  // For now we have this
-  // const habits = [
-  //   {
-  //     // "emoji": "💧",
-  //     emoji: "0x1F4A7",
-  //     _id: "water",
-  //   },
-  //   {
-  //     // "emoji": "💪",
-  //     emoji: "0x1F4AA",
-  //     _id: "gym",
-  //   },
-  // ];
-
   return (
     <Container className="main-container" maxWidth="sm">
       <Typography component="p" variant="h5">
@@ -65,13 +49,6 @@ export function HabitTrackerPage() {
         </div>
         <div className="add-habit-wrapper">
           <CreateHabitModal setSubmittedHabit={setSubmittedHabit} />
-          {/* <Button
-            variant="outlined"
-            size="small"
-            sx={{ borderRadius: "36px", height: "64px", width: "64px" }}
-          >
-            <AddIcon />
-          </Button> */}
         </div>
       </div>
     </Container>
