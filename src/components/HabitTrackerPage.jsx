@@ -18,17 +18,20 @@ import CreateHabitModal from "./CreateHabitModal";
 export function HabitTrackerPage() {
   const app = useApp();
   const userId = app.currentUser?.id;
-  console.log(userId);
-  const [habits, setHabits] = useState();
+  console.log("user here",userId);
+  const [habits, setHabits] = useState([]);
+  const [habitEvents,setHabitEvents] = useState({ title: 'muscle', start: new Date() })
+  
   useEffect(() => {
     fetch(getUrl(base, getHabits, {"userID": userId}), {
       method: "GET",
     })
       .then(response => response.json())
-      .then(json => setHabits(json.res))
+      .then(json => {setHabits(json.res)
+    setHabitEvents(formatHabitEvents(json.res))})
       .catch(error => console.log(error));
   }, [userId]);
-  console.log(habits)
+  console.log('here',habits)
 
   // we should query here for the buttons to display
   // find all habits by user ID --> return emojis & habit ID
@@ -46,15 +49,25 @@ export function HabitTrackerPage() {
   //   },
   // ];
 
-function fetchUserHabits(userID) {
-  return (
-   
-  )
+function formatHabitEvents(habits)  {
+  console.log("here 1235",habits)
+  eventArray=[]
+  habits.map((habit, index) => {
+     datesArray.append(elem.dates)
+               console.log("key is---",elem)
+eventArray.append(habit.dates)
+               console.log("v is",v)
+               setHabitEvents(habitEvents[k.dates])
+            }),
+    console.log("something is ",something)
+  
+    return [{ title: 'muscle', start: new Date() },{ title: 'unicorn', start: new Date() }]
 }
 
-const events = [
-  { title: 'muscle', start: new Date() }
-]
+// const events(habits) = [
+//  // { title: 'muscle', start: new Date() }
+
+// ]
 
   // a custom render function
 function renderEventContent(eventInfo) {
@@ -78,7 +91,10 @@ function renderEventContent(eventInfo) {
         Habits
       </Typography>
       <div className="add-progress-row">
-        <div className="track-habits-bubbles">
+        {habits.length==0?<Typography component="p" variant="h7">
+        You are not tracking any habits yet.
+      </Typography>:
+      <div className="track-habits-bubbles">
           {habits?.map((habit) => {
             console.log(habit)
             return (
@@ -96,6 +112,7 @@ function renderEventContent(eventInfo) {
             );
           })}
         </div>
+        }
         <div className="add-habit-wrapper">
           <CreateHabitModal />
           {/* <Button
@@ -116,7 +133,7 @@ function renderEventContent(eventInfo) {
         plugins={[dayGridPlugin]}
         initialView='dayGridMonth'
         weekends={true}
-        events={events}
+        events={habitEvents}
         eventContent={renderEventContent}
         eventColor= '#ff0000'
       />
