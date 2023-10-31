@@ -1,4 +1,6 @@
 import { AppBar, Toolbar, Button, Typography } from "@mui/material";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { WelcomePage } from "./WelcomePage";
 import { HabitTrackerPage } from "./HabitTrackerPage";
 import { AppProvider, useApp } from "./RealmApp";
@@ -8,11 +10,14 @@ import atlasConfig from "../atlasConfig.json";
 import "./App.css";
 const { appId } = atlasConfig;
 
+
 export default function ProvidedApp() {
   return (
     <ThemeProvider>
       <AppProvider appId={appId}>
-        <App />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <App />
+        </LocalizationProvider>
       </AppProvider>
     </ThemeProvider>
   );

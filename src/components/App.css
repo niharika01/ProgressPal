@@ -1,3 +1,15 @@
+/* Variables */
+:root {
+  --sizing-sm: 8px;
+  --sizing-md: 16px;
+  --sizing-lg: 24px;
+  --sizing-xl: 36px;
+  --sizing-2xl: 48px;
+  --sizing-3xl: 64px;
+  --sizing-4xl: 72px;
+  --sizing-5xl: 128px;
+}
+
 .App {
   box-sizing: border-box;
   margin: 0;
@@ -57,15 +69,6 @@
   gap: 24px;
 }
 
-/* Variables */
-:root {
-  --sizing-sm: 8px;
-  --sizing-md: 16px;
-  --sizing-lg: 24px;
-  --sizing-xl: 36px;
-  --sizing-xxl: 48px;
-  --sizing-xxxl: 72px;
-}
 
 .add-progress-row {
   margin-top: var(--sizing-lg);
@@ -78,16 +81,79 @@
 .track-habits-bubbles {
   display: flex;
   gap: var(--sizing-md);
+  flex-wrap: wrap;
 }
 
 .add-habit-wrapper {
-  height: var(--sizing-xl);
-  width: var(--sizing-xl);
+  height: var(--sizing-3xl);
+  width: var(--sizing-3xl);
+  margin-left: var(--sizing-xl);
 }
 
 .habit-emoji {
-  height: var(--sizing-lg);
-  width: var(--sizing-lg);
   font-size: var(--sizing-lg);
+  height: var(--sizing-lg);
   line-height: 1;
+  width: var(--sizing-lg);
+}
+
+.create-habit-modal {
+  padding: var(--sizing-xl);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  outline: solid 2px green;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  border-radius: 4px;
+}
+
+.create-habit-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sizing-md);
+  margin-bottom: var(--sizing-lg);
+  margin-top: var(--sizing-lg);
+  width: 400px;
+  height: 100%;
+}
+
+.submit-habit-button {
+  width: var(--sizing-5xl);
+  padding: var(--sizing-sm);
+}
+
+.modal-action-items {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: var(--sizing-md);
+}
+
+.name-emoji-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.name-input {
+  width: 100%;
+}
+
+.emoji-input {
+  align-self: center;
+  margin-left: var(--sizing-lg);
+}
+
+.emoji-picker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 400px;
+  z-index: 999;
 }
